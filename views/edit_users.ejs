@@ -1,0 +1,93 @@
+<%- include('layout/header') %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mx-auto mt-4">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white">
+          <h3 class="mb-0">Edit User (<%=user.name %>)</h3>
+        </div>
+        <div class="card-body">
+          <form
+            action="/update/<%=user._id%>"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                value="<%=user.name%>"
+                required
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                value="<%=user.email%>"
+                name="email"
+                required
+              />
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                value="<%=user.phone%>"
+                name="phone"
+                required
+              />
+            </div>
+
+            <!-- File Upload -->
+            <!-- File Upload -->
+            <div class="mb-3">
+              <label for="profile" class="form-label"
+                >Upload Profile Picture</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="profile"
+                name="image"
+                accept="image/*"
+              />
+              <img
+                src="/uploads/<%= user.image %>"
+                alt=""
+                width="100"
+                class="img-thumbnail mt-1"
+              />
+            </div>
+
+            <!-- keep old image if no new file is uploaded -->
+            <input type="hidden" name="old_image" value="<%= user.image %>" />
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <input
+                type="submit"
+                name="submit"
+                value="Update User"
+                class="btn btn-success btn-lg"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('layout/footer') %>
